@@ -1,0 +1,73 @@
+name: Build Typst and deploy it on GitHub Releases
+
+on:
+  push:
+    tags: '*'
+    branches-ignore:
+      - 'autodelivery**'
+      - 'bump-**'
+      - 'renovate/**'
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'renovate.json'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Install fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-open-sans
+          wget https://github.com/FortAwesome/Font-Awesome/releases/download/6.4.2/fontawesome-free-6.4.2-desktop.zip
+          unzip fontawesome-free-6.4.2-desktop.zip
+          sudo mv fontawesome-free-6.4.2-desktop /usr/share/fonts
+          sudo fc-cache -fv
+        
+      - uses: yusancky/setup-typst@v3.1.0
+        id: setup-typst
+        with:
+          version: 'latest'
+
+      - name: Build documents
+        run: for file in `ls *typ`; do typst compile $file; done
+
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v4.2.0
+        with:
+          name: PDF
+          path: "*.pdf"
+
+      - name: Get current date
+        id: date
+        run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
+      
+      - name: Autotag
+        id: autotag
+        if: github.ref_name == 'master'
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          if ! git describe --tags --exact-match HEAD; then
+            TENTATIVE_TAG="$(git describe)" || TENTATIVE_TAG="0.1.0-$(git log -n1 --date=format:'%Y-%m-%dT%H%M%S' --format=%cd)"
+            git tag "$TENTATIVE_TAG" -m "Release "$TENTATIVE_TAG""
+          fi
+          echo "TAG=$(git describe --tags --exact-match HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: github.ref_name == 'master'
+        with:
+          name: "Release — ${{ steps.autotag.outputs.tag }}"
+          files: "*.pdf"
+          tag_name: ${{ steps.autotag.outputs.tag }}
