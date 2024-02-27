@@ -65,5 +65,15 @@
 ]
 
 #slide[
+  = This is a title
+
+  #lorem(24)
+
+  == This is a subtitle
+
+  #lorem(34)
+]
+
+#slide[
   #bibliography("bibliography.bib")
 ]
