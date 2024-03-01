@@ -28,7 +28,7 @@ jobs:
       - name: Install fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-fonts-extra
+          sudo apt-get install -y fonts-inter
           wget https://github.com/FortAwesome/Font-Awesome/releases/download/6.4.2/fontawesome-free-6.4.2-desktop.zip
           unzip fontawesome-free-6.4.2-desktop.zip
           sudo mv fontawesome-free-6.4.2-desktop /usr/share/fonts
