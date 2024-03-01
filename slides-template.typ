@@ -1,5 +1,6 @@
 #import "@preview/polylux:0.3.1": *
 #import "@preview/fontawesome:0.1.0": *
+#import "@preview/fontawesome:0.1.0": *
 #import "style/utils.typ": *
 
 #import themes.metropolis: *
@@ -72,6 +73,15 @@
   == This is a subtitle
 
   #lorem(34)
+]
+
+#slide[
+
+  == Icon in a title #fa-java()
+
+  #fa-icon("github", fa-set: "Brands") -- Github icon
+
+  #fa-icon("github", fa-set: "Brands", fill: blue) -- Github icon blue fill
 ]
 
 #slide[
