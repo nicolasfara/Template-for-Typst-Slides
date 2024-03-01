@@ -1,6 +1,5 @@
 #import "@preview/polylux:0.3.1": *
 #import "@preview/fontawesome:0.1.0": *
-#import "@preview/fontawesome:0.1.0": *
 #import "style/utils.typ": *
 
 #import themes.metropolis: *
@@ -10,18 +9,11 @@
   footer: [Optional Footnote]
 )
 
-#set text(font: "Fira Sans", weight: "light", size: 20pt)
+#set text(font: "Inter", weight: "light", size: 20pt)
 #show math.equation: set text(font: "Fira Math")
-#set strong(delta: 100)
+// #show raw: set text(font: "Fira Code", weight: "regular")
+#set strong(delta: 150)
 #set par(justify: true)
-
-// #show math.equation: set text(font: "Fira Math")
-// #set strong(delta: 300)
-// #set par(justify: true)
-
-// #set page(paper: "presentation-16-9")
-// #show raw: set text(size: 16pt)
-// #show figure.caption: set text(size: 16pt)
 
 #title-slide(
   title: "Slide Title",
@@ -29,7 +21,6 @@
   author: "Author Name",
   date: datetime.today().display("[day] [month repr:long] [year]"),
 )
-
 
 #new-section-slide("Slide section 1")
 
