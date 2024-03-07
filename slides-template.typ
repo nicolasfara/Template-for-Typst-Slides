@@ -1,6 +1,5 @@
 #import "@preview/polylux:0.3.1": *
 #import "@preview/fontawesome:0.1.0": *
-#import "style/utils.typ": *
 
 #import themes.metropolis: *
 
@@ -11,9 +10,16 @@
 
 #set text(font: "Inter", weight: "light", size: 20pt)
 #show math.equation: set text(font: "Fira Math")
-// #show raw: set text(font: "Fira Code", weight: "regular")
 #set strong(delta: 150)
 #set par(justify: true)
+
+#set raw(tab-size: 4)
+#show raw.where(block: true): block.with(
+  fill: luma(240),
+  inset: 1em,
+  radius: 0.7em,
+  width: 100%,
+)
 
 #title-slide(
   title: "Slide Title",
@@ -35,16 +41,7 @@
 ]
 
 #slide(title: "Code slide")[
-  #code(bgcolor: m-extra-light-gray, strokecolor: 1pt + m-dark-teal)[```python
-  print("Hello, world!")
-
-  for i in range(10):
-      print(i)
-
-  print("Goodbye, world!")
-  ```]
-
-  #code(bgcolor: m-extra-light-gray, strokecolor: 1pt + m-dark-teal)[```kotlin
+  ```kotlin
   fun main() {
       println("Hello, world!")
 
@@ -53,7 +50,7 @@
       }
       println("Goodbye, world!")
   }
-  ```]
+  ```
 ]
 
 #slide[
