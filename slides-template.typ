@@ -10,7 +10,7 @@
 
 #set text(font: "Inter", weight: "light", size: 20pt)
 #show math.equation: set text(font: "Fira Math")
-#set strong(delta: 150)
+#set strong(delta: 350)
 #set par(justify: true)
 
 #set raw(tab-size: 4)
