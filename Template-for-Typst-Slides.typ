@@ -8,10 +8,14 @@
   footer: [Optional Footnote]
 )
 
-#set text(font: "Inter", weight: "light", size: 20pt)
+#set text(font: "Fira Sans", weight: 350, size: 20pt)
 #show math.equation: set text(font: "Fira Math")
-#set strong(delta: 350)
+#set strong(delta: 200)
 #set par(justify: true)
+
+#set quote(block: true)
+#show quote: set align(left)
+#show quote: set pad(x: 2em, y: -0.8em)
 
 #set raw(tab-size: 4)
 #show raw.where(block: true): block.with(
@@ -21,11 +25,31 @@
   width: 100%,
 )
 
+#show bibliography: set text(size: 0.8em)
+#show footnote.entry: it => {
+  block(inset: (x: 2em, y: 0.1em))[#text(size: 0.75em)[#it.note.body]]
+}
+
+#let fcite(clabel) = {
+  footnote(cite(form: "full", label(clabel)))
+}
+
+#let author = block(inset: 0.1em)[
+  #table(inset: 0.5em, stroke: none, columns: (auto, 4fr),  align: (left, left),
+    [#alert[*Author 1*]], [`author1@mail.com`],
+    [Author 2], [`author2@mail.com`],
+    [Author 3], [`author3@mail.com`],
+  )
+  #place(right, dy:-1.5em)[
+    #figure(image("images/disi.svg", width:40%))
+  ]
+]
+
 #title-slide(
   title: "Slide Title",
   subtitle: "Subtitle",
-  author: "Author Name",
-  date: datetime.today().display("[day] [month repr:long] [year]"),
+  author: author,
+  // date: datetime.today().display("[day] [month repr:long] [year]"),
 )
 
 #new-section-slide("Slide section 1")
