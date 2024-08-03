@@ -43,7 +43,7 @@ jobs:
         run: for file in `ls *typ`; do typst compile $file; done
 
       - name: Upload PDF file
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4.3.5
         with:
           name: PDF
           path: "*.pdf"
