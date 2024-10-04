@@ -6,21 +6,21 @@
 
 // Pdfpc configuration
 // typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./example.pdfpc
-// #pdfpc.config(
-//   duration-minutes: 30,
-//   start-time: datetime(hour: 14, minute: 10, second: 0),
-//   end-time: datetime(hour: 14, minute: 40, second: 0),
-//   last-minutes: 5,
-//   note-font-size: 12,
-//   disable-markdown: false,
-//   default-transition: (
-//     type: "push",
-//     duration-seconds: 2,
-//     angle: ltr,
-//     alignment: "vertical",
-//     direction: "inward",
-//   ),
-// )
+#let pdfpc-config = pdfpc.config(
+    duration-minutes: 30,
+    start-time: datetime(hour: 14, minute: 10, second: 0),
+    end-time: datetime(hour: 14, minute: 40, second: 0),
+    last-minutes: 5,
+    note-font-size: 12,
+    disable-markdown: false,
+    default-transition: (
+      type: "push",
+      duration-seconds: 2,
+      angle: ltr,
+      alignment: "vertical",
+      direction: "inward",
+    ),
+  )
 
 // Theorems configuration by ctheorems
 #show: thmrules.with(qed-symbol: $square$)
@@ -38,7 +38,10 @@
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
-  // config-common(handout: true),
+  config-common(
+    // handout: true,
+    preamble: pdfpc-config, 
+  ),
   config-info(
     title: [Title],
     subtitle: [Subtitle],
