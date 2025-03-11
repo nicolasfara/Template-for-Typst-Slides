@@ -1,8 +1,9 @@
-#import "@preview/touying:0.5.2": *
+#import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
 #import "@preview/fontawesome:0.1.0": *
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 #import "@preview/numbly:0.1.0": numbly
+#import "utils.typ": *
 
 // Pdfpc configuration
 // typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./example.pdfpc
@@ -40,20 +41,38 @@
   footer: self => self.info.institution,
   config-common(
     // handout: true,
-    preamble: pdfpc-config, 
+    preamble: pdfpc-config,
+    show-bibliography-as-footnote: bibliography(title: none, "bibliography.bib"),
   ),
   config-info(
-    title: [Title],
+    title: [Presentation Title],
     subtitle: [Subtitle],
-    author: [Authors],
-    date: datetime.today(),
-    institution: [Institution],
-    // logo: emoji.school,
+    author: author_list(
+      (
+        (first_author("Nicolas Farabegoli"), "nicolas.farabegoli@unibo.it"),
+        ("Foo Bar", "foo@bar.com"),
+      )
+    ),
+    date: datetime.today().display("[day] [month repr:long] [year]"),
+    institution: [University of Bologna],
+    logo: align(right)[#image("images/disi.svg", width: 55%)],
   ),
 )
 
 #set text(font: "Fira Sans", weight: "light", size: 20pt)
 #show math.equation: set text(font: "Fira Math")
+
+#set raw(tab-size: 4)
+#show raw: set text(size: 0.75em)
+#show raw.where(block: true): block.with(
+  fill: luma(240),
+  inset: (x: 1em, y: 1em),
+  radius: 0.7em,
+  width: 100%,
+)
+
+#show bibliography: set text(size: 0.75em)
+#show footnote.entry: set text(size: 0.75em)
 
 // #set heading(numbering: numbly("{1}.", default: "1.1"))
 
@@ -115,28 +134,26 @@
 
 // #new-section-slide("Slide section 1")
 
-// #slide(title: "Slide")[
-//   *Bold* and _italic_ text.
-  
-//   This is a citiation @nicolas_farabegoli_2024_10535841.
+== Slide
+*Bold* and _italic_ text.
 
-//   #alert[
-//     This is an alert.
-//   ]
-// ]
+This is a citation #cite(label("DBLP:journals/fgcs/FarabegoliPCV24")).
+This another citation #cite(label("DBLP:journals/iot/FarabegoliPCV24"))
 
-// #slide(title: "Code slide")[
-//   ```kotlin
-//   fun main() {
-//       println("Hello, world!")
+#alert[This is an alert.]
 
-//       for (i in 0..9) {
-//           println(i)
-//       }
-//       println("Goodbye, world!")
-//   }
-//   ```
-// ]
+== Code slide
+
+```kotlin
+fun main() {
+    println("Hello, world!")
+
+    for (i in 0..9) {
+        println(i)
+    }
+    println("Goodbye, world!")
+}
+```
 
 // #slide[
 //   = This is a title
