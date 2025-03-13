@@ -1,6 +1,6 @@
 #import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
-#import "@preview/fontawesome:0.1.0": *
+#import "@preview/fontawesome:0.5.0": *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/numbly:0.1.0": numbly
 #import "utils.typ": *
@@ -63,7 +63,7 @@
 #show math.equation: set text(font: "Fira Math")
 
 #set raw(tab-size: 4)
-#show raw: set text(size: 0.75em)
+#show raw: set text(size: 1em)
 #show raw.where(block: true): block.with(
   fill: luma(240),
   inset: (x: 1em, y: 1em),
@@ -147,7 +147,6 @@ This another citation #cite(label("DBLP:journals/iot/FarabegoliPCV24"))
 ```kotlin
 fun main() {
     println("Hello, world!")
-
     for (i in 0..9) {
         println(i)
     }
@@ -155,24 +154,22 @@ fun main() {
 }
 ```
 
-// #slide[
-//   = This is a title
+== Title and subtitle slide
 
-//   #lorem(24)
+=== This is a subtitle
 
-//   == This is a subtitle
+#lorem(24)
 
-//   #lorem(34)
-// ]
+=== This is a subtitle
 
-// #slide[
+#lorem(34)
 
-//   == Icon in a title #fa-java()
+== FontAwesome icons
 
-//   #fa-icon("github", fa-set: "Brands") -- Github icon
+=== Icon in a title #fa-java()
 
-//   #fa-icon("github", fa-set: "Brands", fill: blue) -- Github icon blue fill
-// ]
+#fa-icon("github") -- Github icon \
+#fa-icon("github", fill: blue) -- Github icon blue fill
 
 // #slide[
 //   #bibliography("bibliography.bib")

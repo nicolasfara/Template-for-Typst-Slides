@@ -3,7 +3,7 @@
 /// - email (str): the email address of the author
 /// -> (block): a block containing the email address
 #let mail(email) = {
-  text(size: 1.6em)[#raw(email)]
+  text(size: 1.2em)[#raw(email)]
 }
 
 /// 
