@@ -29,3 +29,65 @@
   }
   #v(1em)
 ]
+
+#let styled-block(
+  title, 
+  content, 
+  icon: "", 
+  fill-color: rgb("#23373b").lighten(90%),
+  stroke-color: rgb("#23373b").lighten(50%),
+  title-color: rgb("#000000"),
+  title-size: 20pt
+) = {
+  block(
+    width: 100%,
+    inset: (x: 24pt, y: 18pt),
+    fill: fill-color,
+    radius: 8pt,
+    stroke: (
+      paint: stroke-color, 
+      thickness: 1pt,
+      dash: "solid"
+    ),
+    [
+      #text(weight: "bold", size: title-size, fill: title-color)[#icon #title]
+      #v(-12pt)
+      #line(length: 100%, stroke: (paint: stroke-color, thickness: 1.5pt))
+      #v(-10pt)
+      #content
+    ]
+  )
+}
+
+/// Blocks
+#let feature-block(title, content, icon: "") = {
+  styled-block(
+    title, 
+    content, 
+    icon: icon,
+    fill-color: rgb("#23373b").lighten(90%),
+    stroke-color: rgb("#23373b").lighten(50%),
+    title-size: 22pt
+  )
+}
+
+#let note-block(title, content, icon: fa-info-circle() + " ") = {
+  styled-block(
+    title, 
+    content, 
+    icon: icon,
+    fill-color: rgb("#fffde7"),
+    stroke-color: rgb("#ffecb3"),
+  )
+}
+
+#let warning-block(title, content, icon: fa-exclamation-triangle() + " ") = {
+  styled-block(
+    title, 
+    content, 
+    icon: icon,
+    fill-color: rgb("#fff3e0"),
+    stroke-color: rgb("#ffcc80"),
+    title-color: rgb("#e65100"),
+  )
+}
