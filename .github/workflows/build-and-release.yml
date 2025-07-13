@@ -37,7 +37,7 @@ jobs:
           sudo mv FiraSans-master /usr/share/fonts
           sudo fc-cache -fv
         
-      - uses: typst-community/setup-typst@v4.1.0
+      - uses: typst-community/setup-typst@v4.2.0
         id: setup-typst
         with:
           version: 'latest'
