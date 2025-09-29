@@ -32,6 +32,14 @@
   #v(1em)
 ]
 
+/// #bold
+///
+/// - content (block): the content to be displayed in bold
+/// -> (block): a block containing the bolded content
+#let bold(content) = {
+  text(weight: "bold")[#content]
+}
+
 #let styled-block(
   title, 
   content, 
