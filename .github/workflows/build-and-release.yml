@@ -43,7 +43,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Touying Exporter
-        run: pip install touying-exporter
+        run: pip install touying
         
       - uses: typst-community/setup-typst@v4.2.0
         id: setup-typst
