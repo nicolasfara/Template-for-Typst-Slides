@@ -36,6 +36,14 @@ jobs:
           sudo mv fontawesome-free-6.4.2-desktop /usr/share/fonts
           sudo mv FiraSans-master /usr/share/fonts
           sudo fc-cache -fv
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Touying Exporter
+        run: pip install touying-exporter
         
       - uses: typst-community/setup-typst@v4.2.0
         id: setup-typst
@@ -66,6 +74,16 @@ jobs:
             git tag "$TENTATIVE_TAG" -m "Release "$TENTATIVE_TAG""
           fi
           echo "TAG=$(git describe --tags --exact-match HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Build HTML File
+        if: github.ref_name == 'master'
+        run: touying compile main.typ --output build/index.html --format html --font-paths fonts
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build
 
       - name: Release
         uses: softprops/action-gh-release@v2
