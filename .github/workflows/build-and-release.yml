@@ -77,7 +77,7 @@ jobs:
 
       - name: Build HTML File
         if: github.ref_name == 'master'
-        run: touying compile main.typ --output build/index.html --format html --font-paths fonts
+        run: touying compile Template-for-Typst-Slides.typ --output build/index.html --format html --font-paths fonts
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
