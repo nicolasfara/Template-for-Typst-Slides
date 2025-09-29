@@ -1,3 +1,5 @@
+#import "@preview/fontawesome:0.6.0": *
+
 /// #mail
 ///
 /// - email (str): the email address of the author
