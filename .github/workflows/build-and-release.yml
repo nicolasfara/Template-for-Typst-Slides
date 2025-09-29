@@ -80,6 +80,7 @@ jobs:
         run: touying compile Template-for-Typst-Slides.typ --output build/index.html --format html --font-paths fonts
 
       - name: Deploy to GitHub Pages
+        if: github.ref_name == 'master'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
