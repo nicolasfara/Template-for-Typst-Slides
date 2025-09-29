@@ -45,17 +45,16 @@
     show-bibliography-as-footnote: bibliography(title: none, "bibliography.bib"),
   ),
   config-info(
-    title: [Presentation Title],
-    subtitle: [Subtitle],
+    title: [Engineering Collective Systems in the Wearable Edge-Cloud Continuum: Models and Platforms],
+    subtitle: [PhD Second Year Presentation -- Cycle 39],
     author: author_list(
       (
         (first_author("Nicolas Farabegoli"), "nicolas.farabegoli@unibo.it"),
-        ("Foo Bar", "foo@bar.com"),
       )
     ),
     date: datetime.today().display("[day] [month repr:long] [year]"),
     institution: [University of Bologna],
-    logo: align(right)[#image("images/disi.svg", width: 55%)],
+    // logo: align(right)[#image("images/disi.svg", width: 55%)],
   ),
 )
 
@@ -82,9 +81,19 @@
 
 // #components.adaptive-columns(outline(title: none, indent: 1em))
 
-= Animation
+= Background and Research Context
 
-== Simple Animation
+== Collective Systems in the Wearable Edge-Cloud Continuum
+
+#components.side-by-side(columns: (2fr, auto))[
+  #underline[Collective systems] are large-scale systems composed of several #bold[interconnected devices] that interact and collaborate to achieve *global common goals*.
+
+  Traditionally, collective systems are considered as a "flat" network of devices, but the emergence of #bold[wearable devices] and the #bold[edge-cloud continuum] opens new #underline[research challenges] and #underline[opportunities].
+
+  In this new domain, the network is *highly heterogeneous* in terms of device capabilities, and the #bold[network topology] is #underline[dynamic], #underline[unpredictable], and #underline[multi-level].
+][
+  #figure(image("images/edge-cloud-continuum.svg", height: 60%))
+]
 
 #pdfpc.speaker-note("This is a note that only the speaker will see.")
 
