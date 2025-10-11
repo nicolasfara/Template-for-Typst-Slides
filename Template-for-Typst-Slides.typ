@@ -1,5 +1,5 @@
 #import "@preview/touying:0.6.1": *
-#import themes.metropolis: *
+#import "themes/theme.typ": *
 #import "@preview/fontawesome:0.6.0": *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/numbly:0.1.0": numbly
@@ -36,7 +36,7 @@
 #let example = thmplain("example", "Example").with(numbering: none)
 #let proof = thmproof("proof", "Proof")
 
-#show: metropolis-theme.with(
+#show: theme.with(
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
   config-common(
