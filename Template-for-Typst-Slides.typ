@@ -1,4 +1,4 @@
-#import "@preview/touying:0.6.2": *
+#import "@preview/touying:0.6.3": *
 #import themes.metropolis: *
 #import "@preview/fontawesome:0.6.0": *
 #import "@preview/ctheorems:1.1.3": *
